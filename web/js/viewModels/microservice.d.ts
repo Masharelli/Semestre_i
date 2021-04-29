@@ -15,10 +15,13 @@ interface Product {
 }
 declare class MicroserviceViewModel {
     private readonly smQuery;
+    promedioStatus: number;
     readonly isSmall: ko.Observable<boolean>;
     private readonly data1;
     readonly dataProvider1: ArrayDataProvider<string, Product>;
     constructor();
+    private promedio;
+    readonly estatusTotal: string;
     /**
      * Optional ViewModel method invoked after the View is inserted into the
      * document DOM.  The application can put logic that requires the DOM being
