@@ -3,9 +3,79 @@
  Licensed under The Universal Permissive License (UPL), Version 1.0
  as shown at https://oss.oracle.com/licenses/upl/
  -->
-<div class="oj-hybrid-padding">
-  <h1>Dashboard Content Area</h1>
-  <div>
-      To change the content of this section, you will make edits to the dashboard.html file located in the /ts/views folder.
+ <h1 class="oj-flex-item">Home view</h1>
+  <div class="oj-hybrid-padding oj-flex">
+    <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center" style="margin: auto; width: fit-content;">
+      <div id="sampleDemo" class="demo-padding demo-container demo-flex-display" >
+        <div id="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+          <div class="oj-flex-item" style="margin: auto; width: fit-content;">
+            <img src="../../css/icons/exito-64.png" alt="success" />
+          </div>
+          <div class="oj-flex-item" style="margin: auto;">
+            <h3 style="margin: auto; width: fit-content;">Oracle AI is up and running</h3>
+          </div>
+        </div>
+
+        <div class="oj-flex">
+          <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-xl-margin-4x-vertical">
+            <h5 >Current Status of all microservices</h5>
+          </div>
+          <div class="oj-flex oj-sm-12 oj-md-6 oj-lg-6 oj-sm-margin-4x-vertical oj-xl-margin-4x-vertical oj-xl-padding-4x-vertical">
+            <div class="oj-flex-item oj-flex oj-typography-body-xs">
+              <img src="../../css/icons/exito.png" alt="success" style="margin: auto;"/>
+              <p class="oj-flex-item" style="height: auto; margin: auto; padding-left: 10px;">No problem</p>
+            </div>
+            <div class="oj-flex-item oj-flex oj-typography-body-xs">
+              <img src="../../css/icons/repair-tool.png" alt="success" style="margin: auto;"/>
+              <p class="oj-flex-item" style="height: auto; margin: auto; padding-left: 10px;">Maintenance</p>
+            </div>
+            <div class="oj-flex-item oj-flex oj-typography-body-xs">
+              <img src="../../css/icons/flag.png" alt="success" style="margin: auto;"/>
+              <p class="oj-flex-item" style="height: auto; margin: auto; padding-left: 10px;">Notice</p>
+            </div>
+            <div class="oj-flex-item oj-flex oj-typography-body-xs">
+              <img src="../../css/icons/warning.png" alt="success" style="margin: auto;"/>
+              <p class="oj-flex-item" style="height: auto; margin: auto; padding-left: 10px;">Incident</p>
+            </div>
+            <div class="oj-flex-item oj-flex oj-typography-body-xs">
+              <img src="../../css/icons/negative.png" alt="success" style="margin: auto;"/>
+              <p class="oj-flex-item" style="height: auto; margin: auto; padding-left: 10px;">Outage</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="componentDemoContent" class="demo-flex-display">   
+          <div id="listitemlayout" class="oj-flex">
+            <oj-bind-for-each aria-label="list with list item layout" data="[[dataProvider1]]" >
+              <template data-oj-as="item">
+                <div class="oj-flex-item oj-xl-6 oj-md-6 oj-lg-6 oj-sm-12">
+                  <oj-list-item-layout>
+                    <div class="oj-typography-body-md">
+                      <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                    </div>
+                    <div slot="trailing" class="oj-typography-body-sm  demo-badge-width" >
+                      <oj-bind-if test="[[item.data.status === 'success']]">
+                        <img src="../../css/icons/exito.png" alt="success" />
+                      </oj-bind-if>
+                      <oj-bind-if test="[[item.data.status === 'warning']]">
+                        <img src="../../css/icons/warning.png" alt="success" />
+                      </oj-bind-if>
+                      <oj-bind-if test="[[item.data.status === 'danger']]">
+                        <img src="../../css/icons/negative.png" alt="success" />
+                      </oj-bind-if>
+                      <oj-bind-if test="[[item.data.status === 'maintenance']]">
+                        <img class="" src="../../css/icons/repair.png" alt="success" />
+                      </oj-bind-if>
+                    </div>
+                    <div slot="quaternary" class="oj-typography-body-sm oj-text-color-secondary" >
+                      <oj-bind-text value="Quaternary"> </oj-bind-text>
+                    </div>
+                  </oj-list-item-layout>
+                </div>
+              </template>
+            </oj-bind-for-each>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>

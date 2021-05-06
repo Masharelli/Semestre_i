@@ -1,5 +1,27 @@
+/// <reference types="ojarraydataprovider" />
+import * as ko from "knockout";
+import ArrayDataProvider = require("ojs/ojarraydataprovider");
+import "ojs/ojknockout";
+import "ojs/ojselector";
+import "ojs/ojlistitemlayout";
+import "ojs/ojlistview";
+interface Product {
+    id: string;
+    image: string;
+    model: string;
+    name: string;
+    status: string;
+    cost: string;
+}
 declare class DashboardViewModel {
+    private readonly smQuery;
+    promedioStatus: number;
+    readonly isSmall: ko.Observable<boolean>;
+    private readonly dataMicroservices;
+    readonly dataProvider1: ArrayDataProvider<string, Product>;
     constructor();
+    private promedio;
+    readonly estatusTotal: string;
     /**
      * Optional ViewModel method invoked after the View is inserted into the
      * document DOM.  The application can put logic that requires the DOM being
