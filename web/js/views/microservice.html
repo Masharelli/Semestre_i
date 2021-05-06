@@ -3,109 +3,86 @@
  Licensed under The Universal Permissive License (UPL), Version 1.0
  as shown at https://oss.oracle.com/licenses/upl/
  -->
- <div class="oj-hybrid-padding">
+  <div class="oj-hybrid-padding">
     <h1>Microservice view</h1>
     <div>
-        <div id="sampleDemo" style="" class="demo-padding demo-container">
-          <div class="oj-flex">
-            <div class="oj-sm-12 oj-md-6 oj-lg-6">
-              <h4 >Current Status of the microservice</h4>
-            </div>
-            <div class="oj-sm-12 oj-md-6 oj-lg-6">
-              <span class="oj-badge oj-badge-sm oj-badge-success">
-                <oj-bind-text value="No problem"></oj-bind-text>
-              </span>
-              <span class="oj-badge oj-badge-sm oj-badge-info">
-                <oj-bind-text value="Maintenance"></oj-bind-text>
-              </span>
-              <span class="oj-badge oj-badge-sm">
-                <oj-bind-text value="Notice"></oj-bind-text>
-              </span>
-              <span class="oj-badge oj-badge-sm oj-badge-warning">
-                <oj-bind-text value="Incident"></oj-bind-text>
-              </span>
-              <span class="oj-badge oj-badge-sm oj-badge-danger">
-                <oj-bind-text value="Outage"></oj-bind-text>
-              </span>
-            </div>
+      <div id="sampleDemo" class="demo-padding demo-container">
+        <div class="oj-flex">
+          <div class="oj-sm-12 oj-md-6 oj-lg-6">
+            <h4 >Current Status of the microservice</h4>
           </div>
-          
-
-          <div id="componentDemoContent" class="demo-flex-display">
-            <div id="estatusTotal oj-flex">
-              <div class="oj-sm-12 oj-md-6 oj-lg-6">
-                <h5 >The microservice is up and running</h5>
-              </div>
-              <div class="oj-sm-12 oj-md-6 oj-lg-6">
-                <span class="oj-icon-color-success oj-icon-circle-s " 
-                role="img" aria-label="check" title="check">
-                  <span class="oj-icon-circle-inner">
-                    <span class="oj-ux-ico-check "></span>
-                  </span>
-                </span>
-              </div>
-            </div>
-                    
-            <div id="listitemlayout" class="demo-flex-display">
-                <oj-list-view
-                  id="listviewone"
-                  aria-label="list with list item layout"
-                  data="[[dataProvider1]]"
-                  gridlines.item="visible"
-                  class="oj-sm-12 oj-md-8 oj-lg-8 oj-flex-item oj-sm-padding-2x-horizontal"
-                >
-                  <template slot="itemTemplate" data-oj-as="item">
-                    <li>
-                      <oj-list-item-layout>
-                        <div
-                          slot="overline"
-                          class="oj-typography-body-sm oj-text-color-secondary"
-                        >
-                          <oj-bind-text value="Overline slot"> </oj-bind-text>
-                        </div>
-                        <div class="oj-typography-body-md">
-                          <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
-                        </div>
-                        <div slot="secondary" class="oj-typography-body-sm">
-                          <oj-bind-text value=""></oj-bind-text>
-                        </div>
-                        <div
-                          slot="tertiary"
-                          class="oj-typography-body-xs oj-text-color-secondary"
-                        >
-                          <oj-bind-text value="Tertiary slot"> </oj-bind-text>
-                        </div>
-                        <div
-                          slot="trailing"
-                          class="oj-typography-body-sm  demo-badge-width"
-                        >
-                          <oj-bind-if test="[[item.data.status === 'success']]">
-                            <span class="oj-badge oj-badge-success">
-                              <oj-bind-text value="No problem"></oj-bind-text>
-                            </span>
-                          </oj-bind-if>
-                          <oj-bind-if test="[[item.data.status === 'warning']]">
-                            <span class="oj-badge oj-badge-warning">
-                              <oj-bind-text value="Incident"></oj-bind-text>
-                            </span>
-                          </oj-bind-if>
-                          <oj-bind-if test="[[item.data.status === 'danger']]">
-                            <span class="oj-badge oj-badge-danger">
-                              <oj-bind-text value="Outage"></oj-bind-text>
-                            </span>
-                          </oj-bind-if>
-                          <oj-bind-if test="[[item.data.status === 'maintenance']]">
-                            <span class="oj-badge oj-badge-info">
-                              <oj-bind-text value="Maintenace"></oj-bind-text>
-                            </span>
-                          </oj-bind-if>
-                        </div>
-                      </oj-list-item-layout>
-                    </li>
-                  </template>
-                </oj-list-view>
-            </div>
+          <div class="oj-sm-12 oj-md-6 oj-lg-6">
+            <span class="oj-badge oj-badge-sm oj-badge-success">
+              <oj-bind-text value="No problem"></oj-bind-text>
+            </span>
+            <span class="oj-badge oj-badge-sm oj-badge-info">
+              <oj-bind-text value="Maintenance"></oj-bind-text>
+            </span>
+            <span class="oj-badge oj-badge-sm">
+              <oj-bind-text value="Notice"></oj-bind-text>
+            </span>
+            <span class="oj-badge oj-badge-sm oj-badge-warning">
+              <oj-bind-text value="Incident"></oj-bind-text>
+            </span>
+            <span class="oj-badge oj-badge-sm oj-badge-danger">
+              <oj-bind-text value="Outage"></oj-bind-text>
+            </span>
           </div>
         </div>
+
+        <div id="componentDemoContent" class="demo-flex-display">
+          <div id="estatusTotal oj-flex">
+            <div class="oj-sm-12 oj-md-6 oj-lg-6">
+              <h5 >The microservice is up and running</h5>
+            </div>
+            <div class="oj-sm-12 oj-md-6 oj-lg-6">
+              <span class="oj-icon-color-success oj-icon-circle-s " role="img" aria-label="check" title="check">
+                <span class="oj-icon-circle-inner">
+                  <span class="oj-ux-ico-check "></span>
+                </span>
+              </span>
+            </div>
+          </div>
+                  
+          <div id="listitemlayout" class="oj-flex">
+            <oj-bind-for-each aria-label="list with list item layout" data="[[dataProvider1]]" >
+              <template data-oj-as="item">
+                <div class="oj-flex-item oj-xl-6 oj-md-6 oj-lg-6 oj-sm-12">
+                  <oj-list-item-layout>
+                    <div class="oj-typography-body-md">
+                      <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                    </div>
+                    <div slot="trailing" class="oj-typography-body-sm  demo-badge-width" >
+                      <oj-bind-if test="[[item.data.status === 'success']]">
+                        <span class="oj-badge oj-badge-success">
+                          <oj-bind-text value="No problem"></oj-bind-text>
+                        </span>
+                      </oj-bind-if>
+                      <oj-bind-if test="[[item.data.status === 'warning']]">
+                        <span class="oj-badge oj-badge-warning">
+                          <oj-bind-text value="Incident"></oj-bind-text>
+                        </span>
+                      </oj-bind-if>
+                      <oj-bind-if test="[[item.data.status === 'danger']]">
+                        <span class="oj-badge oj-badge-danger">
+                          <oj-bind-text value="Outage"></oj-bind-text>
+                        </span>
+                      </oj-bind-if>
+                      <oj-bind-if test="[[item.data.status === 'maintenance']]">
+                        <span class="oj-badge oj-badge-info">
+                          <oj-bind-text value="Maintenace"></oj-bind-text>
+                        </span>
+                      </oj-bind-if>
+                    </div>
+                    <div slot="quaternary" class="oj-typography-body-sm oj-text-color-secondary" >
+                      <oj-bind-text value="Quaternary"> </oj-bind-text>
+                    </div>
+                  </oj-list-item-layout>
+                </div>
+              </template>
+            </oj-bind-for-each>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
