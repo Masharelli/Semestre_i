@@ -63,8 +63,8 @@ class MicroserviceViewModel {
           id: "id4",
           image: "../images/rake.png",
           model: "2351654564",
-          name: "Component 4",
-          status: "danger",
+          name: "Microservicio 21",
+          status: "success",
           cost: "$25.99",
           color: "green"
       },
