@@ -1,16 +1,16 @@
 define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils", "ojs/ojresponsiveknockoututils", "ojs/ojbootstrap", "ojs/ojarraydataprovider", "ojs/ojknockout", "ojs/ojselector", "ojs/ojlistitemlayout", "ojs/ojlistview"], function (require, exports, AccUtils, ko, ResponsiveUtils, ResponsiveKnockoutUtils, ojbootstrap_1, ArrayDataProvider) {
     "use strict";
-    class DashboardViewModel {
+    class MicroserviceViewModel {
         constructor() {
             this.smQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
             this.promedioStatus = 0;
             this.isSmall = ResponsiveKnockoutUtils.createMediaQueryObservable(this.smQuery);
-            this.dataMicroservices = [
+            this.data1 = [
                 {
                     id: "id1",
                     image: "../images/rake.png",
                     model: "2351654564",
-                    name: "Microservices 1",
+                    name: "Component 1",
                     status: "danger",
                     cost: "$25.99",
                     color: "green"
@@ -19,7 +19,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     id: "id2",
                     image: "../images/shrubrake.png",
                     model: "2351654297",
-                    name: "Microservices 2",
+                    name: "Component 2",
                     status: "success",
                     cost: "$15.50",
                     color: "yellow"
@@ -28,7 +28,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     id: "id3",
                     image: "../images/specialtyrake.png",
                     model: "2351654982",
-                    name: "Microservices 3",
+                    name: "Component 3",
                     status: "warning",
                     cost: "$22.00",
                     color: "red"
@@ -37,7 +37,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     id: "id4",
                     image: "../images/rake.png",
                     model: "2351654564",
-                    name: "Microservices 4",
+                    name: "Component 4",
                     status: "danger",
                     cost: "$25.99",
                     color: "green"
@@ -46,7 +46,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     id: "id5",
                     image: "../images/shrubrake.png",
                     model: "2351654297",
-                    name: "Microservices 5",
+                    name: "Component 5",
                     status: "success",
                     cost: "$15.50",
                     color: "yellow"
@@ -55,13 +55,13 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     id: "id6",
                     image: "../images/specialtyrake.png",
                     model: "2351654982",
-                    name: "Microservices 6",
+                    name: "Component 6",
                     status: "warning",
                     cost: "$22.00",
                     color: "red"
                 }
             ];
-            this.dataProvider1 = new ArrayDataProvider(this.dataMicroservices, { keyAttributes: "id" });
+            this.dataProvider1 = new ArrayDataProvider(this.data1, { keyAttributes: "id" });
             this.promedio = (data) => {
                 var suma = 0;
                 for (var i = 0; i < data.length; i++) {
@@ -87,8 +87,8 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     return "danger";
                 }
             };
-            this.estatusTotal = this.promedio(this.dataMicroservices);
-            this.promedio(this.dataMicroservices);
+            this.estatusTotal = this.promedio(this.data1);
+            this.promedio(this.data1);
         }
         /**
          * Optional ViewModel method invoked after the View is inserted into the
@@ -99,8 +99,8 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
          * after being disconnected.
          */
         connected() {
-            AccUtils.announce("Home page loaded.");
-            document.title = "Oracle AI - Home";
+            AccUtils.announce("Microservice page loaded.");
+            document.title = "Microservice";
             // implement further logic if needed
         }
         /**
@@ -118,8 +118,8 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
         }
     }
     ojbootstrap_1.whenDocumentReady().then(() => {
-        ko.applyBindings(new DashboardViewModel(), document.getElementById("listitemlayout"));
+        ko.applyBindings(new MicroserviceViewModel(), document.getElementById("listitemlayout"));
     });
-    return DashboardViewModel;
+    return MicroserviceViewModel;
 });
-//# sourceMappingURL=dashboard.js.map
+//# sourceMappingURL=microservice.js.map

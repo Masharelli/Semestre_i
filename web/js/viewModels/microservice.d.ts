@@ -13,11 +13,11 @@ interface Product {
     status: string;
     cost: string;
 }
-declare class DashboardViewModel {
+declare class MicroserviceViewModel {
     private readonly smQuery;
     promedioStatus: number;
     readonly isSmall: ko.Observable<boolean>;
-    private readonly dataMicroservices;
+    private readonly data1;
     readonly dataProvider1: ArrayDataProvider<string, Product>;
     constructor();
     private promedio;
@@ -41,4 +41,4 @@ declare class DashboardViewModel {
      */
     transitionCompleted(): void;
 }
-export = DashboardViewModel;
+export = MicroserviceViewModel;

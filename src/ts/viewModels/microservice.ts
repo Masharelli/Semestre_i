@@ -22,7 +22,7 @@ import ArrayDataProvider = require("ojs/ojarraydataprovider");
     cost: string
 }
 
-class DashboardViewModel {
+class MicroserviceViewModel {
 
     private readonly smQuery = ResponsiveUtils.getFrameworkQuery(
         ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY
@@ -31,12 +31,12 @@ class DashboardViewModel {
     promedioStatus = 0;
 
     readonly isSmall = ResponsiveKnockoutUtils.createMediaQueryObservable(this.smQuery);
-    private readonly dataMicroservices = [
+    private readonly data1 = [
         {
             id: "id1",
             image: "../images/rake.png",
             model: "2351654564",
-            name: "Microservices 1",
+            name: "Component 1",
             status: "danger",
             cost: "$25.99",
             color: "green"
@@ -45,7 +45,7 @@ class DashboardViewModel {
             id: "id2",
             image: "../images/shrubrake.png",
             model: "2351654297",
-            name: "Microservices 2",
+            name: "Component 2",
             status: "success",
             cost: "$15.50",
             color: "yellow"
@@ -54,7 +54,7 @@ class DashboardViewModel {
             id: "id3",
             image: "../images/specialtyrake.png",
             model: "2351654982",
-            name: "Microservices 3",
+            name: "Component 3",
             status: "warning",
             cost: "$22.00",
             color: "red"
@@ -63,7 +63,7 @@ class DashboardViewModel {
           id: "id4",
           image: "../images/rake.png",
           model: "2351654564",
-          name: "Microservices 4",
+          name: "Component 4",
           status: "danger",
           cost: "$25.99",
           color: "green"
@@ -72,7 +72,7 @@ class DashboardViewModel {
           id: "id5",
           image: "../images/shrubrake.png",
           model: "2351654297",
-          name: "Microservices 5",
+          name: "Component 5",
           status: "success",
           cost: "$15.50",
           color: "yellow"
@@ -81,18 +81,18 @@ class DashboardViewModel {
           id: "id6",
           image: "../images/specialtyrake.png",
           model: "2351654982",
-          name: "Microservices 6",
+          name: "Component 6",
           status: "warning",
           cost: "$22.00",
           color: "red"
       }
     ];
-    readonly dataProvider1 = new ArrayDataProvider<Product["id"], Product>(this.dataMicroservices, { keyAttributes: "id" });
+    readonly dataProvider1 = new ArrayDataProvider<Product["id"], Product>(this.data1, { keyAttributes: "id" });
     
     
 
   constructor() {
-    this.promedio(this.dataMicroservices);
+    this.promedio(this.data1);
   }
 
   private promedio = (data) => {
@@ -119,7 +119,7 @@ class DashboardViewModel {
    }
   }
 
-  readonly estatusTotal = this.promedio(this.dataMicroservices);
+  readonly estatusTotal = this.promedio(this.data1);
   /**
    * Optional ViewModel method invoked after the View is inserted into the
    * document DOM.  The application can put logic that requires the DOM being
@@ -129,8 +129,8 @@ class DashboardViewModel {
    * after being disconnected.
    */
   connected(): void {
-    AccUtils.announce("Home page loaded.");
-    document.title = "Oracle AI - Home";
+    AccUtils.announce("Microservice page loaded.");
+    document.title = "Microservice";
     // implement further logic if needed
   }
 
@@ -150,7 +150,7 @@ class DashboardViewModel {
   }
 }
 whenDocumentReady().then(() => {
-    ko.applyBindings(new DashboardViewModel(), document.getElementById("listitemlayout"));
+    ko.applyBindings(new MicroserviceViewModel(), document.getElementById("listitemlayout"));
 });
 
-export = DashboardViewModel;
+export = MicroserviceViewModel;
