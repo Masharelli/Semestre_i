@@ -1,10 +1,25 @@
-define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils", "ojs/ojresponsiveknockoututils", "ojs/ojbootstrap", "ojs/ojarraydataprovider", "ojs/ojknockout", "ojs/ojselector", "ojs/ojlistitemlayout", "ojs/ojlistview"], function (require, exports, AccUtils, ko, ResponsiveUtils, ResponsiveKnockoutUtils, ojbootstrap_1, ArrayDataProvider) {
+define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils", "ojs/ojresponsiveknockoututils", "../../js/axios", "ojs/ojbootstrap", "ojs/ojarraydataprovider", "ojs/ojknockout", "ojs/ojselector", "ojs/ojlistitemlayout", "ojs/ojlistview"], function (require, exports, AccUtils, ko, ResponsiveUtils, ResponsiveKnockoutUtils, axios_1, ojbootstrap_1, ArrayDataProvider) {
     "use strict";
     class MicroserviceViewModel {
+        /*sql = 'SELECT * FROM M1';
+        query = db.query(this.sql, (err, result)=>{
+            //if(err) throw err;
+            //console.log(result);
+            //var r2 = result.map(v => Object.assign({}, v));
+            //var normalResults = result.map((mysqlObj, index) => {
+            //    return Object.assign({}, mysqlObj);
+            //});
+            //console.log(normalResults);
+            //console.log(r2);
+            console.log('hello');
+            //res.send('Posts fetched');
+        });()
+    */
         constructor() {
             this.smQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
             this.promedioStatus = 0;
             this.isSmall = ResponsiveKnockoutUtils.createMediaQueryObservable(this.smQuery);
+            this.data2 = [];
             this.data1 = [
                 {
                     id: "id1",
@@ -89,6 +104,31 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
             };
             this.estatusTotal = this.promedio(this.data1);
             this.promedio(this.data1);
+            axios_1.default.get('http://localhost:3000/getposts').then(resp => {
+                console.log(resp.data);
+                this.data2 = (resp.data);
+            });
+            console.log(this.data2);
+            //console.log(db.connect);
+            /*db.connect((err) => {
+              if(err){
+                  throw err;
+              }
+              console.log('MySQL connected...');
+            });
+            
+            let sql = 'SELECT * FROM M1';
+            let query = db.query(sql, (err, result)=>{
+                //if(err) throw err;
+                //console.log(result);
+                //r2 = result.map(v => Object.assign({}, v));
+                //var normalResults = result.map((mysqlObj, index) => {
+                //    return Object.assign({}, mysqlObj);
+                //});
+                //console.log(normalResults);
+                console.log('r2');
+                //res.send('Posts fetched');
+            });*/
         }
         /**
          * Optional ViewModel method invoked after the View is inserted into the

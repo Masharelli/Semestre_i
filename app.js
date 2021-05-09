@@ -1,11 +1,13 @@
 const express = require('express');
 const mysql = require('mysql');
-
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
+app.options('*', cors());
+
 
 //create connection
-
-const timer = ms => new Promise( res => setTimeout(res, ms));
 
 
 const db = mysql.createConnection({
@@ -52,11 +54,17 @@ app.get('/addpost2', (req, res) => {
  
 //get
 app.get('/getposts', (req, res) => {
-    let sql = 'SELECT * FROM reports';
+    let sql = 'SELECT * FROM M1';
     let query = db.query(sql, (err, result)=>{
-        if(err) throw err;
-        console.log(result);
-        res.send('Posts fetched');
+        //if(err) throw err;
+        //console.log(result);
+        r2 = result.map(v => Object.assign({}, v));
+        //var normalResults = result.map((mysqlObj, index) => {
+        //    return Object.assign({}, mysqlObj);
+        //});
+        //console.log(normalResults);
+        //console.log(r2);
+        res.send(r2);
     });
 });
 

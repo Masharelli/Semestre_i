@@ -1,11 +1,32 @@
 import * as AccUtils from "../accUtils";
 
-import * as ko from "knockout";
+import * as ko from "knockout"; 
 import * as ResponsiveUtils from "ojs/ojresponsiveutils";
 import * as ResponsiveKnockoutUtils from "ojs/ojresponsiveknockoututils";
+//import axios, { AxiosRequestConfig, AxiosPromise } from 'axios';
+import axios, { AxiosRequestConfig, AxiosPromise } from "../../js/axios";
 import { whenDocumentReady } from "ojs/ojbootstrap";
+
+//const axios = require('axios');
+
+//import {getPosts} from "./../../js/app";
+//import * as express from 'express';
   
 import ArrayDataProvider = require("ojs/ojarraydataprovider");
+
+/*import * as mysql from "../../../node_modules/mysql2/";
+import * as dotenv from "../../../node_modules/dotenv/";
+dotenv.config();
+
+const app = express;
+
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PWD,
+  database: process.env.DB_NAME
+});*/
+
   
   import "ojs/ojknockout";
   import "ojs/ojselector";
@@ -31,6 +52,9 @@ class MicroserviceViewModel {
     promedioStatus = 0;
 
     readonly isSmall = ResponsiveKnockoutUtils.createMediaQueryObservable(this.smQuery);
+
+    private data2 = [];
+
     private readonly data1 = [
         {
             id: "id1",
@@ -89,10 +113,49 @@ class MicroserviceViewModel {
     ];
     readonly dataProvider1 = new ArrayDataProvider<Product["id"], Product>(this.data1, { keyAttributes: "id" });
     
-    
-
+    /*sql = 'SELECT * FROM M1';
+    query = db.query(this.sql, (err, result)=>{
+        //if(err) throw err;
+        //console.log(result);
+        //var r2 = result.map(v => Object.assign({}, v));
+        //var normalResults = result.map((mysqlObj, index) => {
+        //    return Object.assign({}, mysqlObj);
+        //});
+        //console.log(normalResults);
+        //console.log(r2);
+        console.log('hello');
+        //res.send('Posts fetched');
+    });()
+*/
   constructor() {
     this.promedio(this.data1);
+
+    axios.get('http://localhost:3000/getposts').then(resp => {
+      console.log(resp.data);
+      this.data2 = (resp.data);
+    });
+      
+    console.log(this.data2);
+    //console.log(db.connect);
+    /*db.connect((err) => {
+      if(err){
+          throw err;
+      }
+      console.log('MySQL connected...');
+    });
+    
+    let sql = 'SELECT * FROM M1';
+    let query = db.query(sql, (err, result)=>{
+        //if(err) throw err;
+        //console.log(result);
+        //r2 = result.map(v => Object.assign({}, v));
+        //var normalResults = result.map((mysqlObj, index) => {
+        //    return Object.assign({}, mysqlObj);
+        //});
+        //console.log(normalResults);
+        console.log('r2');
+        //res.send('Posts fetched');
+    });*/
   }
 
   private promedio = (data) => {

@@ -1,0 +1,51 @@
+[
+    {
+      checkID: 1,
+      componentID: 1,
+      componentName: 'Product API',
+      date: 2021-05-09T16:47:39.000Z,
+      status: 'success'
+    },
+    {
+      checkID: 2,
+      componentID: 6,
+      componentName: 'Sellers API',
+      date: 2021-05-09T16:50:08.000Z,
+      status: 'danger'
+    },
+    {
+      checkID: 3,
+      componentID: 2,
+      componentName: 'Shipping API',
+      date: 2021-05-09T16:50:20.000Z,
+      status: 'success'
+    },
+    {
+      checkID: 4,
+      componentID: 3,
+      componentName: 'Payment API',
+      date: 2021-05-09T16:50:21.000Z,
+      status: 'success'
+    },
+    {
+      checkID: 5,
+      componentID: 4,
+      componentName: 'Sales API',
+      date: 2021-05-09T16:50:21.000Z,
+      status: 'warning'
+    },
+    {
+      checkID: 6,
+      componentID: 5,
+      componentName: 'Chatbot API',
+      date: 2021-05-09T16:50:21.000Z,
+      status: 'danger'
+    },
+    {
+      checkID: 7,
+      componentID: 6,
+      componentName: 'Sellers API',
+      date: 2021-05-09T16:50:21.000Z,
+      status: 'danger'
+    }
+  ]

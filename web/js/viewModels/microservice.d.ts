@@ -17,6 +17,7 @@ declare class MicroserviceViewModel {
     private readonly smQuery;
     promedioStatus: number;
     readonly isSmall: ko.Observable<boolean>;
+    private data2;
     private readonly data1;
     readonly dataProvider1: ArrayDataProvider<string, Product>;
     constructor();
