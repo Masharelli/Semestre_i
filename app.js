@@ -31,7 +31,7 @@ app.listen('3000', () => {
 //Insert 2 microservices test
 
 app.get('/addpost1', (req, res) => {
-    let post = {serviceID:'10', serviceName: 'Micro 1', status:'300'};
+    let post = {"serviceID":'10', "serviceName": 'Micro 1', "status":'300'};
     let sql = 'INSERT INTO Reports SET ?';
     let query = db.query(sql, post, () => {
         //if(err) throw err;
@@ -62,8 +62,12 @@ app.get('/getposts', (req, res) => {
         //var normalResults = result.map((mysqlObj, index) => {
         //    return Object.assign({}, mysqlObj);
         //});
-        //console.log(normalResults);
-        //console.log(r2);
+        //var jsonString = qs.parse(r2);
+        //var jsonString = qs.parse(normalResults);
+        console.log(r2);
+        //console.log(jsonString);
+        //console.log(jsonString);
+        //res.send(normalResults);
         res.send(r2);
     });
 });
