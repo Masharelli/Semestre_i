@@ -1,4 +1,5 @@
 import * as AccUtils from "../accUtils";
+
 class AboutViewModel {
 
   constructor() {
