@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql');
 const app = express();
 const cors = require('cors');
+const { isJSDocUnknownTag } = require('typescript');
 
 app.use(cors());
 app.options('*', cors());
@@ -53,8 +54,18 @@ app.get('/addpost2', (req, res) => {
 });
  
 //get
-app.get('/getposts', (req, res) => {
-    let sql = 'SELECT * FROM M1';
+app.get('/getposts/:month/:microservice', (req, res) => {
+    
+    /*if var2 ==junee 
+
+    date < 1 de julio && >31 mayo
+
+    if var2 == mayo 
+    >31 de abril < 1 de junio
+    */
+   var mID = req.params.microservice;
+    let sql = 'SELECT * FROM ' + mID;
+    console.log(sql);
     let query = db.query(sql, (err, result)=>{
         //if(err) throw err;
         //console.log(result);
@@ -72,3 +83,31 @@ app.get('/getposts', (req, res) => {
     });
 });
 
+
+app.get('/getposts2', (req, res) => {
+    
+    /*if var2 ==junee 
+
+    date < 1 de julio && >31 mayo
+
+    if var2 == mayo 
+    >31 de abril < 1 de junio
+    */
+   //var mID = req.params.microservice;
+    let sql = 'SELECT * FROM M1';
+    let query = db.query(sql, (err, result)=>{
+        //if(err) throw err;
+        //console.log(result);
+        r2 = result.map(v => Object.assign({}, v));
+        //var normalResults = result.map((mysqlObj, index) => {
+        //    return Object.assign({}, mysqlObj);
+        //});
+        //var jsonString = qs.parse(r2);
+        //var jsonString = qs.parse(normalResults);
+        console.log(r2);
+        //console.log(jsonString);
+        //console.log(jsonString);
+        //res.send(normalResults);
+        res.send(r2);
+    });
+});

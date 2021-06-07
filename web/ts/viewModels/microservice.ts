@@ -58,7 +58,7 @@ class MicroserviceViewModel {
       keyAttributes: 'componentID'
     });
 
-    axios.get('http://localhost:3000/getposts').then(resp => {
+    axios.get('http://localhost:3000/getposts2').then(resp => {
       //console.log(resp.data);
       resp.data.forEach(user => {
         this.dataArray.push({  componentID: user.componentID.toString(), componentName: user.componentName,date: user.date, status: user.status });

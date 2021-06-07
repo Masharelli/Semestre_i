@@ -49,7 +49,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
             this.dataProvider2 = new ArrayDataProvider(this.dataArray, {
                 keyAttributes: 'componentID'
             });
-            axios_1.default.get('http://localhost:3000/getposts').then(resp => {
+            axios_1.default.get('http://localhost:3000/getposts2').then(resp => {
                 //console.log(resp.data);
                 resp.data.forEach(user => {
                     this.dataArray.push({ componentID: user.componentID.toString(), componentName: user.componentName, date: user.date, status: user.status });
