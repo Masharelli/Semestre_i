@@ -3,9 +3,128 @@
  Licensed under The Universal Permissive License (UPL), Version 1.0
  as shown at https://oss.oracle.com/licenses/upl/
  -->
-<div class="oj-hybrid-padding">
-  <h1>About Content Area</h1>
+
+ <!-- Titulo -->
+<div class="oj-hybrid-padding oj-flex">
+  <div class="demo-flex-display">
+
   <div>
-      To change the content of this section, you will make edits to the about.html file located in the /ts/views folder.
+
+    <h1 class="oj-flex-item">Report 1</h1>
+
   </div>
+
+   <!-- Columnas donde va reporte -->
+   <div id="container">
+
+    <div class="demo-flex-display">
+      <hr class="oj-sm-padding-4x-vertical flex-container">
+      <div class="oj-flex">
+        <div class="oj-flex-item oj-flex  oj-sm-padding-2x-horizontal ">
+          <img src="../../css/icons/negative.png" alt="success" />
+          <b class="oj-flex-item" style="height: auto; margin: auto; padding-left: 10px; ">Outage</b>
+        </div>
+      </div>
+
+      <div class="oj-flex">
+        <div class="oj-flex-item oj-flex  oj-sm-padding-2x-horizontal ">
+          <b>Service degradation in Slack</b>
+        </div>
+      </div>
+
+       <div   class="demo-grid-sizes demo-flex-display">
+
+      <div class="oj-flex">
+        <span class="oj-sm-margin-12x-top">
+          <div class="oj-sm-12 oj-flex-item oj-sm-padding-2x-horizontal ">
+            <p class="oj-flex " style="height: auto; margin: auto; padding-left: 0px; ">
+              <img class="descripcion" src="../../css/icons/exito.png" alt="success" style="padding-left: 45px; padding-right: 20px;" />
+            Issue Summary: 
+          </p>
+        </div>
+      </div>
+
+      <div class="oj-flex">
+        <span class="oj-sm-margin-4x-top">
+        <div class="oj-flex-item oj-flex  oj-sm-padding-2x-horizontal">
+
+          <p class="oj-flex-item oj-flex" style="height: auto; margin: auto; padding-left: 90px; ">On May 20, 2021 from 10:30 a.m. to 10:55 a.m. PDT, 
+            some customers experienced errors and degraded service while using Slack. While a subset of workspaces had trouble accessing Slack, some customers were not impacted at all.
+
+            <br></br>
+            We discovered that a code change had inadvertently affected some workspaces' caches. This change was intended to prevent the Slack client from retrieving data from a deprecated cache schema. However,
+            a missing field in the new cache schema meant that references to the original schema caused fatal errors.
+
+            <br></br>
+
+            By 10:55 a.m. PDT, we'd reverted the change and ensured that the system was fully recovered for all affected customers. Some customers may have had to restart the desktop app, reload their browser tab, 
+            or sign back in to the mobile app to access Slack.
+
+            <br></br>
+
+            Note: We know our customers rely on Slack. If you'd like to receive a full Root Cause Analysis (RCA) report, please reach out to feedback@slack.com to request one.
+
+            <br></br>
+            May 20, 9:12 PM CDT
+
+          </p>
+        </div>
+      </div>
+
+      <div class="oj-flex">
+        <span class="oj-sm-margin-12x-top">
+        <div class="oj-flex-item oj-flex  oj-sm-padding-2x-horizontal ">
+          <b class="oj-flex-item" style="height: auto; margin: auto; padding-left: 10px; ">Services affected</b>
+        </div>
+        <ul style="padding-left: 150px;">
+            <li>
+              Link Previews
+            </li>
+            <li>
+              Apps/Integrations/APIs
+            </li>
+            <li>
+              Posts/Files         
+            </li>
+            <li>
+              Workspace/Org Administration
+            </li>
+            <li>
+              Login/SSO
+            </li>
+            <li>
+              Connections
+            </li>
+            <li>
+              Notifications
+            </li>
+          </ul>
+      </div>
+
+      <div class="oj-flex">
+        <span class="oj-sm-margin-12x-top">
+        <div class="oj-flex-item oj-flex  oj-sm-padding-2x-horizontal ">
+          <b>Status Reported</b>
+        </div>
+        <ul style="padding-left: 150px;">
+          <li>
+            Outage
+          </li>
+        </ul>
+      </div>
+
+      
+
+      
+
+      </div>
+
+    </div> 
+
+   </div>
+   
+     
+    
+  </div>
+
 </div>

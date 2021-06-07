@@ -46,12 +46,12 @@
 
         <div id="componentDemoContent" class="demo-flex-display">   
           <div id="listitemlayout" class="oj-flex">
-            <oj-bind-for-each aria-label="list with list item layout" data="[[dataProvider1]]" >
+            <oj-bind-for-each aria-label="list with list item layout" data="[[dataProvider2]]" >
               <template data-oj-as="item">
                 <div class="oj-flex-item oj-xl-6 oj-md-6 oj-lg-6 oj-sm-12">
                   <oj-list-item-layout>
                     <div class="oj-typography-body-md">
-                      <oj-bind-text value="[[item.data.name]]"></oj-bind-text>
+                      <oj-bind-text value="[[item.data.componentName]]"></oj-bind-text>
                     </div>
                     <div slot="trailing" class="oj-typography-body-sm  demo-badge-width" >
                       <oj-bind-if test="[[item.data.status === 'success']]">
@@ -68,7 +68,7 @@
                       </oj-bind-if>
                     </div>
                     <div slot="quaternary" class="oj-typography-body-sm oj-text-color-secondary" >
-                      <oj-bind-text value="Quaternary"> </oj-bind-text>
+                      <oj-bind-text value="[[item.data.date]]"> </oj-bind-text>
                     </div>
                   </oj-list-item-layout>
                 </div>

@@ -5,23 +5,21 @@ import "ojs/ojknockout";
 import "ojs/ojselector";
 import "ojs/ojlistitemlayout";
 import "ojs/ojlistview";
-interface Product {
-    id: string;
-    image: string;
-    model: string;
-    name: string;
+interface StoredMicro {
+    componentID: number;
+    componentName: string;
+    date: string;
     status: string;
-    cost: string;
 }
 declare class MicroserviceViewModel {
     private readonly smQuery;
     promedioStatus: number;
     readonly isSmall: ko.Observable<boolean>;
-    private readonly data1;
-    readonly dataProvider1: ArrayDataProvider<string, Product>;
+    private data2;
+    private dataArray;
+    dataProvider2: ArrayDataProvider<StoredMicro['componentID'], StoredMicro>;
     constructor();
     private promedio;
-    readonly estatusTotal: string;
     /**
      * Optional ViewModel method invoked after the View is inserted into the
      * document DOM.  The application can put logic that requires the DOM being

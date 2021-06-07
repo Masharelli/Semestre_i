@@ -1,8 +1,9 @@
 import * as AccUtils from "../accUtils";
 
-import * as ko from "knockout";
+import * as ko from "knockout"; 
 import * as ResponsiveUtils from "ojs/ojresponsiveutils";
 import * as ResponsiveKnockoutUtils from "ojs/ojresponsiveknockoututils";
+import axios, { AxiosRequestConfig, AxiosPromise } from "../../js/axios";
 import { whenDocumentReady } from "ojs/ojbootstrap";
   
 import ArrayDataProvider = require("ojs/ojarraydataprovider");
@@ -13,14 +14,12 @@ import ArrayDataProvider = require("ojs/ojarraydataprovider");
   import "ojs/ojlistview";
 
 
-  interface Product {
-    id: string,
-    image: string,
-    model: string,
-    name: string,
+  interface StoredMicro{
+    componentID: number,
+    componentName: string,
+    date: string,
     status: string,
-    cost: string
-}
+  }
 
 class MicroserviceViewModel {
 
@@ -31,68 +30,45 @@ class MicroserviceViewModel {
     promedioStatus = 0;
 
     readonly isSmall = ResponsiveKnockoutUtils.createMediaQueryObservable(this.smQuery);
-    private readonly data1 = [
-        {
-            id: "id1",
-            image: "../images/rake.png",
-            model: "2351654564",
-            name: "Component 1",
-            status: "danger",
-            cost: "$25.99",
-            color: "green"
-        },
-        {
-            id: "id2",
-            image: "../images/shrubrake.png",
-            model: "2351654297",
-            name: "Component 2",
-            status: "success",
-            cost: "$15.50",
-            color: "yellow"
-        },
-        {
-            id: "id3",
-            image: "../images/specialtyrake.png",
-            model: "2351654982",
-            name: "Component 3",
-            status: "warning",
-            cost: "$22.00",
-            color: "red"
-        },
-        {
-          id: "id4",
-          image: "../images/rake.png",
-          model: "2351654564",
-          name: "Component 4",
-          status: "danger",
-          cost: "$25.99",
-          color: "green"
-      },
-      {
-          id: "id5",
-          image: "../images/shrubrake.png",
-          model: "2351654297",
-          name: "Component 5",
-          status: "success",
-          cost: "$15.50",
-          color: "yellow"
-      },
-      {
-          id: "id6",
-          image: "../images/specialtyrake.png",
-          model: "2351654982",
-          name: "Component 6",
-          status: "warning",
-          cost: "$22.00",
-          color: "red"
-      }
-    ];
-    readonly dataProvider1 = new ArrayDataProvider<Product["id"], Product>(this.data1, { keyAttributes: "id" });
-    
-    
+    private data2 = [];
 
+   
+    private dataArray: ko.ObservableArray<StoredMicro>;
+    public dataProvider2: ArrayDataProvider<StoredMicro['componentID'], StoredMicro>;
+    
+    /*sql = 'SELECT * FROM M1';
+    query = db.query(this.sql, (err, result)=>{
+        //if(err) throw err;
+        //console.log(result);
+        //var r2 = result.map(v => Object.assign({}, v));
+        //var normalResults = result.map((mysqlObj, index) => {
+        //    return Object.assign({}, mysqlObj);
+        //});
+        //console.log(normalResults);
+        //console.log(r2);
+        console.log('hello');
+        //res.send('Posts fetched');
+    });()
+*/
   constructor() {
-    this.promedio(this.data1);
+
+    this.dataArray = ko.observableArray();
+  
+    this.dataProvider2 = new ArrayDataProvider(this.dataArray, {
+      keyAttributes: 'componentID'
+    });
+
+    axios.get('http://localhost:3000/getposts').then(resp => {
+      //console.log(resp.data);
+      resp.data.forEach(user => {
+        this.dataArray.push({  componentID: user.componentID.toString(), componentName: user.componentName,date: user.date, status: user.status });
+      });
+
+      console.log(this.dataArray);
+    }).catch(error => {
+      console.log(error);
+    });
+    
   }
 
   private promedio = (data) => {
@@ -119,7 +95,6 @@ class MicroserviceViewModel {
    }
   }
 
-  readonly estatusTotal = this.promedio(this.data1);
   /**
    * Optional ViewModel method invoked after the View is inserted into the
    * document DOM.  The application can put logic that requires the DOM being

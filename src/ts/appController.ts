@@ -63,6 +63,7 @@ class RootViewModel {
     const navData = [
       { path: "", redirect: "dashboard" },
       { path: "dashboard", detail: { label: "Home", iconClass: "oj-ux-ico-home" } },
+      { path: "about", detail: { label: "Report", iconClass: "oj-ux-ico-information-s" } },
       { path: "microservice", detail: { label: "Microservice", iconClass: "oj-ux-ico-information-s" } }
       /*
       { path: "incidents", detail: { label: "Incidents", iconClass: "oj-ux-ico-fire" } },
