@@ -8,10 +8,10 @@ import { whenDocumentReady } from "ojs/ojbootstrap";
   
 import ArrayDataProvider = require("ojs/ojarraydataprovider");
   
-  import "ojs/ojknockout";
-  import "ojs/ojselector";
-  import "ojs/ojlistitemlayout";
-  import "ojs/ojlistview";
+import "ojs/ojknockout";
+import "ojs/ojselector";
+import "ojs/ojlistitemlayout";
+import "ojs/ojlistview";
 
 
   interface StoredMicro{
@@ -49,7 +49,7 @@ class MicroserviceViewModel {
         console.log('hello');
         //res.send('Posts fetched');
     });()
-*/
+    */
   constructor() {
 
     this.dataArray = ko.observableArray();

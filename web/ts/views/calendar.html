@@ -1,0 +1,44 @@
+  <div class="">
+    <h1 class="">Calendar</h1>
+    <div class="oj-flex oj-sm-flex-items-initial oj-sm-12 oj-md-12 oj-lg-12">
+      <oj-form-layout max-columns="3" direction="row" class="oj-sm-12 oj-md-12 oj-lg-6 oj-flex-item">
+        <oj-combobox-one id="combobox3" value="June" 
+                                    label-hint="Select a month" class="oj-form-control-max-width-md">
+                      <oj-option value="April">April</oj-option>
+                      <oj-option value="May">May</oj-option>
+                      <oj-option value="June">June</oj-option>
+                    </oj-combobox-one>
+        </oj-form-layout>
+        <oj-form-layout max-columns="3" direction="row" class="oj-sm-12 oj-md-12 oj-lg-6 oj-flex-item">
+          <oj-combobox-one id="combobox3" value="Chrome" 
+                                      label-hint="Select a Microservice" class="oj-form-control-max-width-md">
+                        <oj-option value="Internet Explorer">Microservice 1</oj-option>
+                        <oj-option value="Firefox">Microservice 2</oj-option>
+                        <oj-option value="Chrome">Microservice 3</oj-option>
+                        <oj-option value="Opera" >Microservice 4</oj-option>
+                        <oj-option value="Safari">Microservice 5</oj-option>
+                        <oj-option value="Edge">Microservice 6</oj-option>
+                      </oj-combobox-one>
+          </oj-form-layout>
+      <oj-table id='table' aria-label='Departments Table'
+        data='[[dataprovider]]'
+        selection-mode='{"row": "single", "column": "none"}'
+        dnd='{"reorder": {"columns": "enabled"}}'
+        scroll-policy='loadMoreOnScroll'
+        scroll-policy-options='{"fetchSize": 10}'
+        columns='[{"headerText": "Day", 
+                    "field": "Day",
+                    "headerClassName": "oj-sm-only-hide",
+                    "className": "oj-sm-only-hide",
+                    "resizable": "enabled"},
+                  {"headerText": "Summary", 
+                    "field": "ComponentName",
+                    "resizable": "enabled"},
+                  {"headerText": "Status", 
+                    "field": "Status",
+                    "resizable": "enabled"}]'
+        class='demo-table-container oj-bg-body oj-sm-12 oj-md-12 oj-lg-12'>
+      </oj-table>
+      
+    </div>
+  </div>

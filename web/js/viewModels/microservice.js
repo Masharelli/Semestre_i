@@ -14,7 +14,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
             console.log('hello');
             //res.send('Posts fetched');
         });()
-    */
+        */
         constructor() {
             this.smQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
             this.promedioStatus = 0;

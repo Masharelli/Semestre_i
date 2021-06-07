@@ -14,3 +14,7 @@
   height: 1px;
   overflow: hidden;
 }
+
+.oj-datepicker-popup .oj-datepicker-multi-12 .oj-datepicker-multi {
+  width: 1100px;
+}
