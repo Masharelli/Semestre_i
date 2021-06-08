@@ -1,5 +1,7 @@
+/// <reference types="ojcorerouter" />
 /// <reference types="ojarraydataprovider" />
 import * as ko from "knockout";
+import CoreRouter = require("ojs/ojcorerouter");
 import ArrayDataProvider = require("ojs/ojarraydataprovider");
 import "ojs/ojknockout";
 import "ojs/ojselector";
@@ -14,12 +16,15 @@ interface Product {
     cost: string;
 }
 declare class DashboardViewModel {
+    router: CoreRouter;
     private readonly smQuery;
     promedioStatus: number;
     readonly isSmall: ko.Observable<boolean>;
     private readonly dataMicroservices;
     readonly dataProvider1: ArrayDataProvider<string, Product>;
     constructor();
+    onClick: () => void;
+    goToMicro: () => void;
     private promedio;
     readonly estatusTotal: string;
     /**

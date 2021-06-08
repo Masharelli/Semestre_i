@@ -11,61 +11,23 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     image: "../images/rake.png",
                     model: "2351654564",
                     name: "Microservices 1",
-                    status: "danger",
+                    status: "outage",
                     cost: "$25.99",
                     color: "green"
                 },
-                {
-                    id: "id2",
-                    image: "../images/shrubrake.png",
-                    model: "2351654297",
-                    name: "Microservices 2",
-                    status: "success",
-                    cost: "$15.50",
-                    color: "yellow"
-                },
-                {
-                    id: "id3",
-                    image: "../images/specialtyrake.png",
-                    model: "2351654982",
-                    name: "Microservices 3",
-                    status: "warning",
-                    cost: "$22.00",
-                    color: "red"
-                },
-                {
-                    id: "id4",
-                    image: "../images/rake.png",
-                    model: "2351654564",
-                    name: "Microservices 4",
-                    status: "danger",
-                    cost: "$25.99",
-                    color: "green"
-                },
-                {
-                    id: "id5",
-                    image: "../images/shrubrake.png",
-                    model: "2351654297",
-                    name: "Microservices 5",
-                    status: "success",
-                    cost: "$15.50",
-                    color: "yellow"
-                },
-                {
-                    id: "id6",
-                    image: "../images/specialtyrake.png",
-                    model: "2351654982",
-                    name: "Microservices 6",
-                    status: "warning",
-                    cost: "$22.00",
-                    color: "red"
-                }
             ];
             this.dataProvider1 = new ArrayDataProvider(this.dataMicroservices, { keyAttributes: "id" });
+            this.onClick = () => {
+                const tempID = document.getElementById("m1").value;
+                console.log();
+            };
+            this.goToMicro = () => {
+                this.router.go({ path: "microservice", params: { message: document.getElementById("m1").value } });
+            };
             this.promedio = (data) => {
                 var suma = 0;
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].status === 'danger') {
+                    if (data[i].status === 'outage') {
                         suma = suma + 1;
                     }
                     if (data[i].status === 'warning') {
@@ -76,7 +38,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     }
                 }
                 var prom = suma / data.length;
-                console.log(prom);
+                //console.log(prom);
                 if (prom > 2) {
                     return "success";
                 }
@@ -84,7 +46,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     return "warning";
                 }
                 else {
-                    return "danger";
+                    return "outage";
                 }
             };
             this.estatusTotal = this.promedio(this.dataMicroservices);

@@ -1,4 +1,4 @@
-  <div class="">
+<div class="">
     <h1 class="">Calendar</h1>
     <div class="oj-flex oj-sm-flex-items-initial oj-sm-12 oj-md-12 oj-lg-12">
       <oj-form-layout max-columns="3" direction="row" class="oj-sm-12 oj-md-12 oj-lg-6 oj-flex-item">
@@ -20,7 +20,7 @@
                         <oj-option value="M6">Microservice 6</oj-option>
                       </oj-combobox-one>
           </oj-form-layout>
-      <oj-table id='table' aria-label='Departments Table'
+      <oj-table id='table' aria-label='Departments Table' onclick="location.href = '?ojr=about'"  style="cursor: pointer;"
         data='[[dataProvider2]]'
         selection-mode='{"row": "single", "column": "none"}'
         dnd='{"reorder": {"columns": "enabled"}}'

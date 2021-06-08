@@ -4,6 +4,9 @@ import * as ko from "knockout";
 import * as ResponsiveUtils from "ojs/ojresponsiveutils";
 import * as ResponsiveKnockoutUtils from "ojs/ojresponsiveknockoututils";
 import { whenDocumentReady } from "ojs/ojbootstrap";
+import axios, { AxiosRequestConfig, AxiosPromise } from "../../js/axios";
+
+import CoreRouter = require ("ojs/ojcorerouter");
   
 import ArrayDataProvider = require("ojs/ojarraydataprovider");
   
@@ -24,6 +27,8 @@ import ArrayDataProvider = require("ojs/ojarraydataprovider");
 
 class DashboardViewModel {
 
+    router: CoreRouter;
+
     private readonly smQuery = ResponsiveUtils.getFrameworkQuery(
         ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY
     );
@@ -37,55 +42,11 @@ class DashboardViewModel {
             image: "../images/rake.png",
             model: "2351654564",
             name: "Microservices 1",
-            status: "danger",
+            status: "outage",
             cost: "$25.99",
             color: "green"
         },
-        {
-            id: "id2",
-            image: "../images/shrubrake.png",
-            model: "2351654297",
-            name: "Microservices 2",
-            status: "success",
-            cost: "$15.50",
-            color: "yellow"
-        },
-        {
-            id: "id3",
-            image: "../images/specialtyrake.png",
-            model: "2351654982",
-            name: "Microservices 3",
-            status: "warning",
-            cost: "$22.00",
-            color: "red"
-        },
-        {
-          id: "id4",
-          image: "../images/rake.png",
-          model: "2351654564",
-          name: "Microservices 4",
-          status: "danger",
-          cost: "$25.99",
-          color: "green"
-      },
-      {
-          id: "id5",
-          image: "../images/shrubrake.png",
-          model: "2351654297",
-          name: "Microservices 5",
-          status: "success",
-          cost: "$15.50",
-          color: "yellow"
-      },
-      {
-          id: "id6",
-          image: "../images/specialtyrake.png",
-          model: "2351654982",
-          name: "Microservices 6",
-          status: "warning",
-          cost: "$22.00",
-          color: "red"
-      }
+        
     ];
     readonly dataProvider1 = new ArrayDataProvider<Product["id"], Product>(this.dataMicroservices, { keyAttributes: "id" });
     
@@ -95,10 +56,22 @@ class DashboardViewModel {
     this.promedio(this.dataMicroservices);
   }
 
+  public onClick = () => {
+
+    const tempID= (<HTMLInputElement>document.getElementById("m1")).value;
+    console.log()
+
+
+  };
+
+  public goToMicro= () => {
+    this.router.go({ path: "microservice", params: { message: (<HTMLInputElement>document.getElementById("m1")).value}})
+  }
+
   private promedio = (data) => {
     var suma = 0;
     for(var i = 0;i<data.length;i++) { 
-      if (data[i].status === 'danger'){
+      if (data[i].status === 'outage'){
         suma=suma +1;
       }
       if (data[i].status === 'warning'){
@@ -109,13 +82,13 @@ class DashboardViewModel {
       }
    }
    var prom = suma/data.length;
-   console.log(prom);
+   //console.log(prom);
    if(prom > 2){
      return "success";
    }else if(prom>1 && prom < 2){
      return "warning"
    }else{
-     return "danger"
+     return "outage"
    }
   }
 

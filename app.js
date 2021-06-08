@@ -40,6 +40,7 @@ const server = wss.listen(wss.get('port'),() =>{
 
 //socket io
 const SocketIO = require('socket.io');
+const { cpuUsage } = require('node:process');
 const io = SocketIO(server);
 
 //websockets
@@ -51,84 +52,61 @@ io.on('connection', (socket)=>{
           //console.log(data);
           //console.log(data.microserviceID);
           //let post = {"componentID": data.componentID, "serviceName": 'Prueba API', "status": data.status};
-          let post = {serviceID:'12', serviceName: 'Microservice 2', status:'400'};
-          let sql = 'INSERT INTO ' + data.microserviceID + ' SET ?';
+          //let post = {serviceID:'12', serviceName: 'Microservice 2', status:'400'};
+          /*let sql = 'INSERT INTO ' + data.microserviceID + '(componentID,componentName,status, summary) ';
+          let sql2 = 'VALUES(' + data.componentID + "," + '"test API"' + "," + '"' + data.status + '"' +"," + '"no problems found");'; */
 
-          console.log(sql);
-          console.log(post);
-          db.query(sql, post, () => {
-            console.log("success");
+          let sql = 'UPDATE ' + data.microserviceID +" ";
+          let sql2 = 'SET status = "' + data.status + '",';
+          let sql3 = 'date = CURRENT_TIMESTAMP '; 
+          let sql4 = 'WHERE componentID = ' + data.componentID + ';';
+
+          let sqlf = sql + sql2 + sql3 + sql4;
+          console.log(sqlf);
+          //console.log(post);
+          db.query(sqlf, () => {
+            //console.log("success");
         })
 
     })
 }); 
 
-//Insert 2 microservices test
-
-app.get('/addpost1', (req, res) => {
-    let post = {"serviceID":'10', "serviceName": 'Micro 1', "status":'300'};
-    let sql = 'INSERT INTO Reports SET ?';
-    let query = db.query(sql, post, () => {
-        //if(err) throw err;
-        //console.log(result);
-        res.send("Post 1 added");
-    })
-    console.log("wait 5 seconds")
-    timer(5000).then(_=>console.log("done"));
-});
-
-app.get('/addpost2', (req, res) => {
-    let post = {serviceID:'12', serviceName: 'Microservice 2', status:'400'};
-    let sql = 'INSERT INTO reports SET ?';
-    let query = db.query(sql, post, () => {
-        //if(err) throw err;
-        //console.log(result);
-        res.send("Post 2 added");
-    })
-});
  
 //get
-app.get('/getposts/:month/:microservice', (req, res) => {
-    
-    /*if var2 ==junee 
+app.get('/getcalendar/:month/:microservice', (req, res) => {
 
-    date < 1 de julio && >31 mayo
-
-    if var2 == mayo 
-    >31 de abril < 1 de junio
-    */
    var mID = req.params.microservice;
     let sql = 'SELECT * FROM ' + mID;
-    console.log(sql);
-    let query = db.query(sql, (err, result)=>{
-        //if(err) throw err;
-        //console.log(result);
+    let sqlDate = ' ';
+
+    //console.log(req.params.month);
+    if(req.params.month == 'June'){
+        sqlDate = ' WHERE DATE(date) BETWEEN DATE(\'2021-06-01\') AND DATE(\'2021-06-30\');';
+    }
+    if(req.params.month == 'May'){
+        sqlDate = ' WHERE DATE(date) BETWEEN DATE(\'2021-05-01\') AND DATE(\'2021-05-31\');';
+    }
+    if(req.params.month == 'April'){
+        sqlDate = ' WHERE DATE(date) BETWEEN DATE(\'2021-04-01\') AND DATE(\'2021-04-31\');';
+    }
+    
+    sql2 = sql + sqlDate;
+    
+    
+    let query = db.query(sql2, (err, result)=>{
         r2 = result.map(v => Object.assign({}, v));
-        //var normalResults = result.map((mysqlObj, index) => {
-        //    return Object.assign({}, mysqlObj);
-        //});
-        //var jsonString = qs.parse(r2);
-        //var jsonString = qs.parse(normalResults);
-        console.log(r2);
-        //console.log(jsonString);
-        //console.log(jsonString);
-        //res.send(normalResults);
+        //console.log(r2);
         res.send(r2);
     });
 });
 
 
-app.get('/getposts2', (req, res) => {
+app.get('/getstatus/:mID', (req, res) => {
     
-    /*if var2 ==junee 
+    var mdd = req.params.mID;
+    //var mID = "M1";
 
-    date < 1 de julio && >31 mayo
-
-    if var2 == mayo 
-    >31 de abril < 1 de junio
-    */
-   //var mID = req.params.microservice;
-    let sql = 'SELECT * FROM M1';
+    let sql = 'SELECT * FROM '+ mdd + '';
     let query = db.query(sql, (err, result)=>{
         //if(err) throw err;
         //console.log(result);
@@ -138,7 +116,7 @@ app.get('/getposts2', (req, res) => {
         //});
         //var jsonString = qs.parse(r2);
         //var jsonString = qs.parse(normalResults);
-        console.log(r2);
+        //console.log(r2);
         //console.log(jsonString);
         //console.log(jsonString);
         //res.send(normalResults);

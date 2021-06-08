@@ -53,22 +53,15 @@ define(["require", "exports", "knockout", "ojs/ojbootstrap", "ojs/ojarraydatapro
             this.onChange = () => {
                 const tempmonth = document.getElementById("combobox3").value;
                 const tempmicro = document.getElementById("combobox4").value;
-                //console.log((<HTMLInputElement>document.getElementById("combobox3")).value);
-                //console.log((<HTMLInputElement>document.getElementById("combobox4")).value);
                 this.dataArray.removeAll();
-                axios_1.default.get('http://localhost:3000/getposts/' + tempmonth + '/' + tempmicro).then(resp => {
-                    console.log(resp.data);
+                axios_1.default.get('http://localhost:3000/getcalendar/' + tempmonth + '/' + tempmicro).then(resp => {
                     var cont = 0;
                     resp.data.forEach(user => {
-                        const day = user.date.split('T')[0];
-                        console.log(day);
-                        //if(this.dataArray[cont].day != day){
-                        //console.log(user)
-                        this.dataArray.push({ checkID: user.checkID, summary: user.summary, day: day, status: user.status });
-                        //}
+                        const date = user.date.split('T')[0];
+                        console.log(date);
+                        this.dataArray.push({ checkID: user.checkID, summary: user.summary, day: date, status: user.status });
                         cont++;
                     });
-                    //console.log(this.dataArray);
                 }).catch(error => {
                     console.log(error);
                 });
@@ -81,20 +74,6 @@ define(["require", "exports", "knockout", "ojs/ojbootstrap", "ojs/ojarraydatapro
                 keyAttributes: "checkId",
             });
             this.value = ko.observable(ConverterUtilsI18n.IntlConverterUtils.dateToLocalIso(new Date()));
-            //get?Micro[1-6]?Mes[abril-junes]
-            //getM1
-            /*axios.get('http://localhost:3000/getposts/june/M1').then(resp => {
-            console.log(resp.data);
-            resp.data.forEach(user => {
-              console.log(user)
-              this.dataArray.push({checkID: user.checkID, summary: user.summary,  day: user.date, status: user.status });
-              console.log(user.date);
-            });
-      
-              //console.log(this.dataArray);
-            }).catch(error => {
-              console.log(error);
-            });*/
         }
     }
     ojbootstrap_1.whenDocumentReady().then(function () {

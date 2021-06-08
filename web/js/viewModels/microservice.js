@@ -1,20 +1,6 @@
 define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils", "ojs/ojresponsiveknockoututils", "../../js/axios", "ojs/ojbootstrap", "ojs/ojarraydataprovider", "ojs/ojknockout", "ojs/ojselector", "ojs/ojlistitemlayout", "ojs/ojlistview"], function (require, exports, AccUtils, ko, ResponsiveUtils, ResponsiveKnockoutUtils, axios_1, ojbootstrap_1, ArrayDataProvider) {
     "use strict";
     class MicroserviceViewModel {
-        /*sql = 'SELECT * FROM M1';
-        query = db.query(this.sql, (err, result)=>{
-            //if(err) throw err;
-            //console.log(result);
-            //var r2 = result.map(v => Object.assign({}, v));
-            //var normalResults = result.map((mysqlObj, index) => {
-            //    return Object.assign({}, mysqlObj);
-            //});
-            //console.log(normalResults);
-            //console.log(r2);
-            console.log('hello');
-            //res.send('Posts fetched');
-        });()
-        */
         constructor() {
             this.smQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
             this.promedioStatus = 0;
@@ -23,7 +9,7 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
             this.promedio = (data) => {
                 var suma = 0;
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i].status === 'danger') {
+                    if (data[i].status === 'outage') {
                         suma = suma + 1;
                     }
                     if (data[i].status === 'warning') {
@@ -42,14 +28,30 @@ define(["require", "exports", "../accUtils", "knockout", "ojs/ojresponsiveutils"
                     return "warning";
                 }
                 else {
-                    return "danger";
+                    return "outage";
                 }
             };
             this.dataArray = ko.observableArray();
             this.dataProvider2 = new ArrayDataProvider(this.dataArray, {
                 keyAttributes: 'componentID'
             });
-            axios_1.default.get('http://localhost:3000/getposts2').then(resp => {
+            // Remove leading '?' from document.location.search
+            const search = document.location.search
+                ? document.location.search.substring(1)
+                : "";
+            const params = [];
+            search.split("&").forEach((param) => {
+                const pair = param.split("/");
+                params.push(pair);
+            });
+            console.log(params);
+            //Donde recibe la tabla a consultar
+            //var mID = params.;
+            var mID = params.pop();
+            var MID2 = mID.toString();
+            var mURL = MID2.substring(17, 19);
+            //console.log(res);
+            axios_1.default.get('http://localhost:3000/getstatus/' + mURL + '').then(resp => {
                 //console.log(resp.data);
                 resp.data.forEach(user => {
                     this.dataArray.push({ componentID: user.componentID.toString(), componentName: user.componentName, date: user.date, status: user.status });
