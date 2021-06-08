@@ -1,6 +1,8 @@
+const path = require('path');
 const express = require('express');
 const mysql = require('mysql');
 const app = express();
+const wss = express();
 const cors = require('cors');
 const { isJSDocUnknownTag } = require('typescript');
 
@@ -9,8 +11,6 @@ app.options('*', cors());
 
 
 //create connection
-
-
 const db = mysql.createConnection({
     host : 'localhost',
     user : 'root',
@@ -19,15 +19,49 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-    if(err){
+    /*if(err){
         throw err;
-    }
+    }*/
     console.log('MySQL connected...');
 });
 
-app.listen('3000', () => {
-    console.log('Server started on port 3000');
+app.set('port',3000);
+app.listen(app.get('port'), () => {
+    console.log('Database Server started on port', app.get('port'));
 });
+
+wss.set('port', 3001);
+wss.use(express.static(path.join(__dirname, 'public2')));
+
+
+const server = wss.listen(wss.get('port'),() =>{
+    console.log('WebSocket Server on port', wss.get('port'));
+});
+
+//socket io
+const SocketIO = require('socket.io');
+const io = SocketIO(server);
+
+//websockets
+
+io.on('connection', (socket)=>{
+    //console.log('new connection');
+
+    socket.on('updateControl', (data)=> {
+          //console.log(data);
+          //console.log(data.microserviceID);
+          //let post = {"componentID": data.componentID, "serviceName": 'Prueba API', "status": data.status};
+          let post = {serviceID:'12', serviceName: 'Microservice 2', status:'400'};
+          let sql = 'INSERT INTO ' + data.microserviceID + ' SET ?';
+
+          console.log(sql);
+          console.log(post);
+          db.query(sql, post, () => {
+            console.log("success");
+        })
+
+    })
+}); 
 
 //Insert 2 microservices test
 

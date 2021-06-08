@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>Microservice Control Panel</title>
+    </head>
+    <body>
+        <h1>
+            Update Microservices and component values
+        </h1>
+
+        <select id='MicroservicesList'>
+            <option value=M1>Microservice 1</option>
+            <option value=M2>Microservice 2</option>
+            <option value=M3>Microservice 3</option>
+            <option value=M4>Microservice 4</option>
+            <option value=M5>Microservice 5</option>
+            <option value=M6>Microservice 6</option>
+        </select>
+
+        <select id='ComponentList'>
+            <option value=1>Component 1</option>
+            <option value=2>Component 2</option>
+            <option value=3>Component 3</option>
+            <option value=4>Component 4</option>
+            <option value=5>Component 5</option>
+            <option value=6>Component 6</option>
+        </select>
+
+        <select id='StatusList'>
+            <option value=success>success</option>
+            <option value=maintenance>Maintenance</option>
+            <option value=notice>Notice</option>
+            <option value=incident>Incident</option>
+            <option value=outage>Outage</option>
+        </select>
+
+        <button id='update'>Update</button>
+
+        <script src='/socket.io/socket.io.js' charset='utf-8'></script>
+        <script src='connection.js'  charset='utf-8'></script>
+    </body>
+</html>
