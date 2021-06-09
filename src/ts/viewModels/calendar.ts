@@ -92,7 +92,6 @@ import * as ko from "knockout";
       this.value = ko.observable(
         ConverterUtilsI18n.IntlConverterUtils.dateToLocalIso(new Date())
       );
-      /*axios.get('http://localhost:3000/getposts/june/M1').then(resp => {
     }
 
     public onChange = () => {
